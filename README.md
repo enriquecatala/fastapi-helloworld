@@ -12,27 +12,40 @@ Very basic API rest for kubernetes demo purposes
 
 >NOTE: This image has been pushed to https://hub.docker.com/r/enriquecatala/fastapi-helloworld
 
+## Test
+
+Navigate to IP:PORT(/one/hello | /two/hello)
+For example: 
+1. Go to http://localhost:5000/one/hello
+2. Go to http://localhost:5000/two/hello
+
+
 ## Setup the container
 
 No special setup required, but the container will return the _HELLOWORLD_ENV_ in the output call. You can edit that variable to check values
 
+### Kubernetes
+If you wanto to deploy, [here](kubernetes-deployment.yaml) you have a deployment example. Please change this accordingly:
+
+```yaml
+    env:
+        - name: HELLOWORLD_ENV
+          value: "Pon aqui lo que te de la gana :)"
+```
+
+### Docker
 In case you are using docker-compose.yml
 
 ```yaml
     environment:
-      - HELLOWORLD_ENV=enrique catala
+      - HELLOWORLD_ENV=Pon aqui lo que te de la gana :)
 ```
 
-## Build container
+## Create your own container
+### Build container
 
 `docker-compose build`
 
-## Run the container locally
+### Run the container locally
 
 `docker-compose up`
-
-## Test the container
-
-1. Go to http://localhost:5000/one/hello
-2. Go to http://localhost:5000/two/hello
-

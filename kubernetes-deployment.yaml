@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: apirest-web
+  name: apirest-web  
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apirest-web
+  template:
+    metadata:
+      labels:
+        app: apirest-web
+    spec:
+      containers:
+      - image: enriquecatala/fastapi-helloworld:v1
+        name: fastapi-helloworld
+        ports:
+        - containerPort: 5000
+        # Simplemente para diferenciarlos facilmente les ponemos variables diferentes
+        env:
+        - name: HELLOWORLD_ENV
+          value: "Pon aqui lo que te de la gana :)"
+---
+# Now the service for the apirest-web
+apiVersion: v1
+kind: Service
+metadata:  
+  labels:
+    app: web-service-clusterip
+  name: web-service-clusterip  
+spec:
+  ports:
+  - name: 50000-5000
+    port: 50000
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: apirest-web
+  type: ClusterIP
