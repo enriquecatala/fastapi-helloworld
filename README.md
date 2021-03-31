@@ -10,7 +10,7 @@
 # fastapi-helloworld
 Very basic API rest for kubernetes demo purposes
 
->NOTE: This image has been pushed to https://hub.docker.com/r/enriquecatala/fastapi-helloworld
+>NOTE: This image **has been pushed to https://hub.docker.com/r/enriquecatala/fastapi-helloworld**
 
 ## Test
 
