@@ -14,10 +14,14 @@ Very basic API rest for kubernetes demo purposes
 
 ## Test
 
+Check your api documentation
+1. Go to http://localhost:5000/docs
+
+Test your methods: 
 Navigate to IP:PORT(/one/hello | /two/hello)
 For example: 
 1. Go to http://localhost:5000/one/hello
-2. Go to http://localhost:5000/two/hello
+
 
 
 ## Setup the container

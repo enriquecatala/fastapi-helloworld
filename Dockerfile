@@ -14,6 +14,9 @@ ENV PYTHONUNBUFFERED=1
 COPY requirements.txt .
 RUN python -m pip install -r requirements.txt
 
+# Copy a simulated secret file to test your future kubernetes secret deployment
+COPY appconfig.conf /app/secrets/appconfig.conf
+
 WORKDIR /app
 COPY . /app
 
