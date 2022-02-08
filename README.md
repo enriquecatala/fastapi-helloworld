@@ -53,3 +53,7 @@ In case you are using docker-compose.yml
 ### Run the container locally
 
 `docker-compose up`
+
+### CI/CD with GitHub Actions
+
+Just push :)
