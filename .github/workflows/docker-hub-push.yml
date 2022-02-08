@@ -28,4 +28,4 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: enriquecatala/fastapi-helloworld:${{ steps.date.outputs.date }}
+        tags: enriquecatala/fastapi-helloworld:latest,enriquecatala/fastapi-helloworld:${{ steps.date.outputs.date }}
