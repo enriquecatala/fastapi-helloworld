@@ -21,8 +21,11 @@ jobs:
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_TOKEN }}
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
     - name: Build and push
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: enriquecatala/fastapi-helloworld:$(date +%s)
+        tags: enriquecatala/fastapi-helloworld:${{ steps.date.outputs.date }}
