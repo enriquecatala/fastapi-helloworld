@@ -1,10 +1,6 @@
-name: Docker image create and push to DockerHub
+name: Docker image create and push to kubernetes cluster
 
 on:
-  # push:
-  #   branches: [ main ]
-  pull_request:    
-    branches: [ main ]  # only for PR to main
   workflow_dispatch:
     
 env:
@@ -32,19 +28,19 @@ jobs:
       with:
         push: true
         tags: enriquecatala/fastapi-helloworld:latest,enriquecatala/fastapi-helloworld:${{ steps.date.outputs.date }}
-    # - uses: azure/aks-set-context@v1
-    #   with:
-    #       creds: '${{ secrets.AZURE_CREDENTIALS }}' # Azure credentials
-    #       resource-group: '${{ secrets.RESOURCE_GROUP_NAME }}'
-    #       cluster-name: '${{ secrets.CLUSTER_NAME }}'
-    #   id: login
-    # - uses: Azure/k8s-deploy@v1.4
-    #   with:
-    #     namespace: ${{ env.NAMESPACE  }}
-    #     action: deploy
-    #     manifests: |
-    #       manifests/deployment.yaml
-    #       manifests/service.yaml
-    #     images: |
-    #       enriquecatala/fastapi-helloworld:${{ steps.date.outputs.date }}
+    - uses: azure/aks-set-context@v1
+      with:
+          creds: '${{ secrets.AZURE_CREDENTIALS }}' # Azure credentials
+          resource-group: '${{ secrets.RESOURCE_GROUP_NAME }}'
+          cluster-name: '${{ secrets.CLUSTER_NAME }}'
+      id: login
+    - uses: Azure/k8s-deploy@v1.4
+      with:
+        namespace: ${{ env.NAMESPACE  }}
+        action: deploy
+        manifests: |
+          manifests/deployment.yaml
+          manifests/service.yaml
+        images: |
+          enriquecatala/fastapi-helloworld:${{ steps.date.outputs.date }}
         
