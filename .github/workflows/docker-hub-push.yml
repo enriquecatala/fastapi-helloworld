@@ -3,8 +3,10 @@ name: Docker image create and push to hub and kubernetes
 on:
   # push:
   #   branches: [ main ]
-  pull_request:
+  pull_request:    
     branches: [ main ]  # only for PR to main
+  workflow_dispatch:
+    
 env:
   NAMESPACE: default  # kubernetes namespace
 jobs:
