@@ -54,6 +54,33 @@ In case you are using docker-compose.yml
 
 `docker-compose up`
 
-### CI/CD with GitHub Actions
+## CI/CD with GitHub Actions
 
 Just push :)
+
+### Setup
+
+First of all, you need to create a new repository in GitHub. Then you need to create a service principal in Azure. For example:
+
+```bash
+az ad sp create-for-rbac --name "github-actions-financeai-dev" --role contributor --scopes "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>" --sdk-auth
+```
+
+With the output, just create this Azure credential for GitHub Actions:
+```json
+{
+  "clientId": "<client id>",
+  "clientSecret": "<client secret>",
+  "subscriptionId": "<subscription id>",
+  "tenantId": "<tenant id>",
+  "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
+  "resourceManagerEndpointUrl": "https://management.azure.com/",
+  "activeDirectoryGraphResourceId": "https://graph.windows.net/",
+  "sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
+  "galleryEndpointUrl": "https://gallery.azure.com/",
+  "managementEndpointUrl": "https://management.core.windows.net/"
+}
+
+```
+
+>NOTE: For more information please read [this](https://github.com/Azure/aks-set-context/tree/releases/v1) and [this](https://docs.microsoft.com/en-us/azure/aks/kubernetes-action)

@@ -15,7 +15,8 @@ spec:
         app: apirest-web
     spec:
       containers:
-      - image: enriquecatala/fastapi-helloworld:v1
+      #- image: enriquecatala/fastapi-helloworld:v1
+      - image: enriquecatala/fastapi-helloworld:latest
         name: fastapi-helloworld
         ports:
         - containerPort: 5000
@@ -23,20 +24,10 @@ spec:
         env:
         - name: HELLOWORLD_ENV
           value: "Pon aqui lo que te de la gana :)"
----
-# Now the service for the apirest-web
-apiVersion: v1
-kind: Service
-metadata:  
-  labels:
-    app: web-service-clusterip
-  name: web-service-clusterip  
-spec:
-  ports:
-  - name: 50000-5000
-    port: 50000
-    protocol: TCP
-    targetPort: 5000
-  selector:
-    app: apirest-web
-  type: ClusterIP
+        resources:
+          limits:
+            cpu: "1"
+            memory: "100Mi"
+          requests:
+            cpu: 500m
+            
