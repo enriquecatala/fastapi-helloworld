@@ -1,11 +1,12 @@
-name: Docker Image CI
+name: Docker image create and push to hub and kubernetes
 
 on:
-  push:
-    branches: [ main ]
+  # push:
+  #   branches: [ main ]
   pull_request:
-    branches: [ main ]
-
+    branches: [ main ]  # only for PR to main
+env:
+  NAMESPACE: default  # kubernetes namespace
 jobs:
 
   build:
